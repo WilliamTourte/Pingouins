@@ -29,7 +29,7 @@ def get_all_pingouins():
 
                 p=pingouin.Pingouin(id_pingouin,espece ,ile, bec_longueur, bec_profondeur, nageoire_longueur, poids, sexe, annee_naissance) #Construction pingouin
                 liste.append(p)
-                return liste
+
             return liste
 
 Liste=get_all_pingouins()
