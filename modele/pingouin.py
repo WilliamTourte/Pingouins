@@ -20,8 +20,7 @@ class Pingouin:
                   f"Poids : {self._poids} kg\n"
                   f"Sexe : {self._sexe} \n"
                   f"Année de naissance : {self._annee_naissance}\n")
-
-
-
         return pingouin
 
+    def get_attributs(self):
+        return {attr: value for attr, value in vars(self).items()}

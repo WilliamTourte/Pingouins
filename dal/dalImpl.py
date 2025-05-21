@@ -85,14 +85,12 @@ def update_pingouin(pingouin):
             conn.commit()
 
 
-
-            ''''''
-
 p=Pingouin(1,"Essai","Nullepart",4,5,6,7,"Mec",1987)
-update_pingouin(p)
-delete_pingouin(1)
 
 '''Liste=get_all_pingouins()
 for pingouin in Liste:
     print(pingouin)'''
 
+attributs = p.get_attributs()
+for attr, value in attributs.items():
+    print(f"{attr}: {value}")
