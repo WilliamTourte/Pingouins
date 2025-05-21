@@ -11,10 +11,17 @@ class Pingouin:
         self._annee_naissance = annee_naissance
 
     def __str__(self):
-        pingouin=(f"{self._id} \n"
-                  f"")
+        pingouin=(f"Id : {self._id} \n"
+                  f"Espèce : {self._espece} \n"
+                  f"Île : {self._ile} \n"
+                  f"Longueur du bec : {self._bec_longueur} mm \n"
+                  f"Profondeur du bec : {self._bec_profondeur} mm \n"
+                  f"Longueur de la nageoire : {self._nageoire_longeur} mm \n"
+                  f"Poids : {self._poids} kg\n"
+                  f"Sexe : {self._sexe} \n"
+                  f"Année de naissance : {self._annee_naissance}\n")
+
+
+
         return pingouin
 
-p=Pingouin("id","espece ","ile", "bec_longueur", "bec_profondeur", "nageoire_longueur", "poids", "sexe", "annee_naissance" )
-
-print(p)
