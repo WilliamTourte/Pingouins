@@ -41,17 +41,17 @@ def delete_pingouin(id_pingouin):
             cursor.execute(""" CREATE PROCEDURE DeletePingouin @id VARCHAR(3)
             AS
             BEGIN
-                SELECT *
+                DELETE
                 FROM Pingouins
                 WHERE id_pingouin like @id
             END """)
             cursor.callproc('DeletePingouin', (id_pingouin,))
-            for row in cursor:
-                print(row)
+            print("Supprime pingouin", id_pingouin)
+            conn.commit()
 
 
 
-delete_pingouin("10")
+delete_pingouin(1)
 
 '''Liste=get_all_pingouins()
 for pingouin in Liste:
