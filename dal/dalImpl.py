@@ -32,8 +32,28 @@ def get_all_pingouins():
 
             return liste
 
-Liste=get_all_pingouins()
-for pingouin in Liste:
-    print(pingouin)
+#Supprime le pingouin dont on donne l'id
+def delete_pingouin(id_pingouin):
 
+    with pymssql.connect(SERVER, USER, PWD, BDD) as conn:
+        with conn.cursor(as_dict=True) as cursor:
+            id_pingouin=str(id_pingouin)
+            cursor.execute(""" CREATE PROCEDURE DeletePingouin @id VARCHAR(3)
+            AS
+            BEGIN
+                SELECT *
+                FROM Pingouins
+                WHERE id_pingouin like @id
+            END """)
+            cursor.callproc('DeletePingouin', (id_pingouin,))
+            for row in cursor:
+                print(row)
+
+
+
+delete_pingouin("10")
+
+'''Liste=get_all_pingouins()
+for pingouin in Liste:
+    print(pingouin)'''
 
