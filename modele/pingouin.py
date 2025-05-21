@@ -5,7 +5,7 @@ class Pingouin:
         self._ile = ile
         self._bec_longueur = bec_longueur
         self._bec_profondeur = bec_profondeur
-        self._nageoire_longeur = nageoire_longeur
+        self._nageoire_longueur = nageoire_longeur
         self._poids = poids
         self._sexe = sexe
         self._annee_naissance = annee_naissance
@@ -16,7 +16,7 @@ class Pingouin:
                   f"Île : {self._ile} \n"
                   f"Longueur du bec : {self._bec_longueur} mm \n"
                   f"Profondeur du bec : {self._bec_profondeur} mm \n"
-                  f"Longueur de la nageoire : {self._nageoire_longeur} mm \n"
+                  f"Longueur de la nageoire : {self._nageoire_longueur} mm \n"
                   f"Poids : {self._poids} kg\n"
                   f"Sexe : {self._sexe} \n"
                   f"Année de naissance : {self._annee_naissance}\n")
