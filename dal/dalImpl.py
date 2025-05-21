@@ -6,6 +6,9 @@ USER = 'SA'
 PWD = 'P@$$word'
 BDD = 'PINGOUINS'
 
+def __repr__(self):
+    return str(self)
+
 #Créez une méthode get_all_pingouins()
 # #Elle doit renvoyer une liste de pingouins en utilisant la classe Pingouin précédemment créée
 with pymssql.connect(SERVER, USER, PWD, BDD) as conn:
@@ -28,10 +31,13 @@ with pymssql.connect(SERVER, USER, PWD, BDD) as conn:
                 liste.append(p)
 
 
+            print(str(liste))
             return liste
 
 
 
-        get_all_pingouins()
+        Liste=get_all_pingouins()
+        for pingouin in Liste:
+            print(pingouin)
 
 
