@@ -11,10 +11,10 @@ def __repr__(self):
 
 #Créez une méthode get_all_pingouins()
 # #Elle doit renvoyer une liste de pingouins en utilisant la classe Pingouin précédemment créée
-with pymssql.connect(SERVER, USER, PWD, BDD) as conn:
-    with conn.cursor(as_dict=True) as cursor:
-        def get_all_pingouins():
-            liste=[]
+def get_all_pingouins():
+     liste=[]
+     with pymssql.connect(SERVER, USER, PWD, BDD) as conn:
+        with conn.cursor(as_dict=True) as cursor:
             cursor.execute('SELECT * FROM Pingouins')
             for row in cursor.fetchall():
                 id_pingouin=row['id_pingouin']
@@ -29,15 +29,11 @@ with pymssql.connect(SERVER, USER, PWD, BDD) as conn:
 
                 p=pingouin.Pingouin(id_pingouin,espece ,ile, bec_longueur, bec_profondeur, nageoire_longueur, poids, sexe, annee_naissance) #Construction pingouin
                 liste.append(p)
-
-
-            print(str(liste))
+                return liste
             return liste
 
-
-
-        Liste=get_all_pingouins()
-        for pingouin in Liste:
-            print(pingouin)
+Liste=get_all_pingouins()
+for pingouin in Liste:
+    print(pingouin)
 
 
