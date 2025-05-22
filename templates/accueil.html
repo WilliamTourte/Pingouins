@@ -37,11 +37,31 @@
                 <td>{{ pingouin._annee_naissance }}</td>
                 <td class="action-buttons">
                     <button class="modify">Modifier</button>
-                    <button class="delete">Supprimer</button>
+                    <button class="delete" onclick="deletePingouin({{ pingouin._id }})">Supprimer</button>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    <script>
+        function deletePingouin(id) {
+            if (confirm("Êtes-vous sûr de vouloir supprimer ce pingouin ?")) {
+                fetch(`/delete_pingouin/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.reload(); // Recharger la page après la suppression
+                    } else {
+                        alert("Erreur lors de la suppression du pingouin.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                });
+            }
+        }
+    </script>
 </body>
 </html>
