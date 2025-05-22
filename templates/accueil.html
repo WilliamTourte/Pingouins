@@ -36,7 +36,7 @@
                 <td>{{ pingouin._sexe }}</td>
                 <td>{{ pingouin._annee_naissance }}</td>
                 <td class="action-buttons">
-                    <button class="modify">Modifier</button>
+                    <a href="/update_pingouin/{{ pingouin._id }}" class="modify">Modifier</a>
                     <button class="delete" onclick="deletePingouin({{ pingouin._id }})">Supprimer</button>
                 </td>
             </tr>
@@ -45,23 +45,26 @@
     </table>
 
     <script>
-        function deletePingouin(id) {
-            if (confirm("Êtes-vous sûr de vouloir supprimer ce pingouin ?")) {
-                fetch(`/delete_pingouin/${id}`, {
-                    method: 'DELETE'
-                })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.reload(); // Recharger la page après la suppression
-                    } else {
-                        alert("Erreur lors de la suppression du pingouin.");
-                    }
-                })
-                .catch(error => {
-                    console.error('Erreur:', error);
-                });
-            }
+    function deletePingouin(id) {
+        if (confirm("Êtes-vous sûr de vouloir supprimer ce pingouin ?")) {
+            fetch(`/delete_pingouin/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    alert(`Le pingouin avec l'ID ${id} a été supprimé avec succès.`);
+                    window.location.reload(); // Recharger la page après la suppression
+                } else {
+                    alert("Erreur lors de la suppression du pingouin.");
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert("Erreur lors de la suppression du pingouin.");
+            });
         }
+    }
     </script>
 </body>
 </html>

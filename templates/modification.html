@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modification des informations du pingouin</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="checkbox"] {
+            width: auto;
+        }
+        .form-actions {
+            text-align: center;
+        }
+        .form-actions button {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Application d'observation des Pingouins</h1>
+    <h2 style="text-align: center;">Modification des informations du pingouin n°{{ pingouin._id }}</h2>
+
+    <div class="form-container">
+        <form method="POST" action="/update_pingouin/{{ pingouin._id }}">
+            <div class="form-group">
+                <label for="id">Identifiant</label>
+                <input type="text" id="id" name="id" value="{{ pingouin._id }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="espece">Espece</label>
+                <input type="text" id="espece" name="espece" value="{{ pingouin._espece }}">
+            </div>
+            <div class="form-group">
+                <label for="ile">Ile</label>
+                <input type="text" id="ile" name="ile" value="{{ pingouin._ile }}">
+            </div>
+            <div class="form-group">
+                <label for="longueur_bec">Longueur du bec (mm)</label>
+                <input type="number" id="longueur_bec" name="longueur_bec" value="{{ pingouin._bec_longueur }}">
+            </div>
+            <div class="form-group">
+                <label for="profondeur_bec">Profondeur du bec (mm)</label>
+                <input type="number" id="profondeur_bec" name="profondeur_bec" value="{{ pingouin._bec_profondeur }}">
+            </div>
+            <div class="form-group">
+                <label for="longueur_nageoire">Longueur de la nageoire (mm)</label>
+                <input type="number" id="longueur_nageoire" name="longueur_nageoire" value="{{ pingouin._nageoire_longueur }}">
+            </div>
+            <div class="form-group">
+                <label for="poids">Poids (g)</label>
+                <input type="number" id="poids" name="poids" value="{{ pingouin._poids }}">
+            </div>
+            <div class="form-group">
+                <label for="sexe">Sexe</label>
+                <select id="sexe" name="sexe">
+                    <option value="Male" {% if pingouin._sexe == 'Male' %}selected{% endif %}>Male</option>
+                    <option value="Femelle" {% if pingouin._sexe == 'Femelle' %}selected{% endif %}>Femelle</option>
+                    <option value="None" {% if pingouin._sexe == 'None' %}selected{% endif %}>None</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="annee_naissance">Année de naissance</label>
+                <input type="number" id="annee_naissance" name="annee_naissance" value="{{ pingouin._annee_naissance }}">
+            </div>
+            <div class="form-actions">
+                <button type="submit">Valider</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
