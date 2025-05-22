@@ -14,6 +14,7 @@ def __repr__(self):
 #Créez une méthode get_all_pingouins()
 # #Elle doit renvoyer une liste de pingouins en utilisant la classe Pingouin précédemment créée
 def get_all_pingouins():
+     print("Get All Pingouins !")
      liste=[]
      with pymssql.connect(SERVER, USER, PWD, BDD) as conn:
         with conn.cursor(as_dict=True) as cursor:
@@ -98,9 +99,6 @@ def  get_pingouin(id):
             pingouin=Pingouin(attributs_liste)
             return pingouin
 
-p=Pingouin(1,"Essai","Nullepart",4,5,6,7,"Mec",1987)
-
-print(get_pingouin(2))
 
 '''Liste=get_all_pingouins()
 for pingouin in Liste:

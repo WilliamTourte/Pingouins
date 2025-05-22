@@ -24,37 +24,23 @@
             </tr>
         </thead>
         <tbody>
+            {% for pingouin in pingouins %}
             <tr>
-                <td>6</td>
-                <td>Adelie</td>
-                <td>Torgersen</td>
-                <td>44.4</td>
-                <td>20.0</td>
-                <td>190.9</td>
-                <td>3651.0</td>
-                <td>male</td>
-                <td>2004</td>
+                <td>{{ pingouin._id }}</td>
+                <td>{{ pingouin._espece }}</td>
+                <td>{{ pingouin._ile }}</td>
+                <td>{{ pingouin._bec_longueur }}</td>
+                <td>{{ pingouin._bec_profondeur }}</td>
+                <td>{{ pingouin._nageoire_longueur }}</td>
+                <td>{{ pingouin._poids }}</td>
+                <td>{{ pingouin._sexe }}</td>
+                <td>{{ pingouin._annee_naissance }}</td>
                 <td class="action-buttons">
                     <button class="modify">Modifier</button>
                     <button class="delete">Supprimer</button>
                 </td>
             </tr>
-            <tr>
-                <td>7</td>
-                <td>Torgersen</td>
-                <td>Adelie</td>
-                <td>38.9</td>
-                <td>17.8</td>
-                <td>181.0</td>
-                <td>3625.0</td>
-                <td>femelle</td>
-                <td>2007</td>
-                <td class="action-buttons">
-                    <button class="modify">Modifier</button>
-                    <button class="delete">Supprimer</button>
-                </td>
-            </tr>
-            <!-- Ajoutez d'autres lignes ici -->
+            {% endfor %}
         </tbody>
     </table>
 </body>
