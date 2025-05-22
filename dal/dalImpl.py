@@ -84,13 +84,28 @@ def update_pingouin(pingouin):
             print("Met à jour pingouin", id_pingouin)
             conn.commit()
 
+def  get_pingouin(id):
+    with pymssql.connect(SERVER, USER, PWD, BDD) as conn:
+        with conn.cursor(as_dict=True) as cursor:
+            cursor.callproc('GetPingouin', (id,))
+            attributs=cursor.fetchone()
+
+            attributs_liste=[]
+            for value in attributs.values():
+                attributs_liste.append(value)
+
+
+            pingouin=Pingouin(attributs_liste)
+            return pingouin
 
 p=Pingouin(1,"Essai","Nullepart",4,5,6,7,"Mec",1987)
+
+print(get_pingouin(2))
 
 '''Liste=get_all_pingouins()
 for pingouin in Liste:
     print(pingouin)'''
-
+'''
 attributs = p.get_attributs()
 for attr, value in attributs.items():
-    print(f"{attr}: {value}")
+    print(f"{attr}: {value}")'''
