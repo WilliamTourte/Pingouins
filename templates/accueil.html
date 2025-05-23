@@ -8,6 +8,18 @@
 </head>
 <body>
     <h1 style="text-align: center;">Application d'observation des Pingouins</h1>
+
+    <!-- Afficher les messages flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <table>
         <thead>
             <tr>
@@ -45,26 +57,26 @@
     </table>
 
     <script>
-    function deletePingouin(id) {
-        if (confirm("Êtes-vous sûr de vouloir supprimer ce pingouin ?")) {
-            fetch(`/delete_pingouin/${id}`, {
-                method: 'DELETE'
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    alert(`Le pingouin avec l'ID ${id} a été supprimé avec succès.`);
-                    window.location.reload(); // Recharger la page après la suppression
-                } else {
+        function deletePingouin(id) {
+            if (confirm("Êtes-vous sûr de vouloir supprimer ce pingouin ?")) {
+                fetch(`/delete_pingouin/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        alert(`Le pingouin avec l'ID ${id} a été supprimé avec succès.`);
+                        window.location.reload(); // Recharger la page après la suppression
+                    } else {
+                        alert("Erreur lors de la suppression du pingouin.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
                     alert("Erreur lors de la suppression du pingouin.");
-                }
-            })
-            .catch(error => {
-                console.error('Erreur:', error);
-                alert("Erreur lors de la suppression du pingouin.");
-            });
+                });
+            }
         }
-    }
     </script>
 </body>
 </html>
